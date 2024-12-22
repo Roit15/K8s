@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-deployment
+  labels:
+    app: dj-app
+  namespace: dj
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dj-app
+  template:
+    metadata:
+      labels:
+        app: dj-app
+    spec:
+      containers:
+      - name: django-ctr
+        image: roit15/todo-app:latest
+        ports:
+        - containerPort: 8001

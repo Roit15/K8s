@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dj-service
+  namespace: dj
+spec:
+  selector:
+    app: dj-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8001
+  type: NodePort
