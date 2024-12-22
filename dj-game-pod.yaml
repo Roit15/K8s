@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dj-game-demo-pod
+spec:
+  containers:
+    - name: demo
+      image: alpine
+      command: ["sleep", "3600"]
+      env:
+        # Define the environment variable
+        - name: bhadaks # Notice that the case is different here
+          valueFrom:
+            configMapKeyRef:
+              name: dj-game-demo           # The ConfigMap this value comes from.
+              key: Levels # The key to fetch.
+        - name: PLAYER_INITIAL_LIVES # Notice that the case is different here
+                                     # from the key name in the ConfigMap.
+          valueFrom:
+            configMapKeyRef:
+              name: dj-game-demo           # The ConfigMap this value comes from.
+              key: level.properties # The key to fetch.
